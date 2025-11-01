@@ -1,0 +1,9 @@
+#Pythonjunk
+__pycache__/
+*.pyc
+#Virtual Enviroment
+venv/
+.env/
+#VS settings
+.vscode/
+.DS_Store

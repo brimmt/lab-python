@@ -415,3 +415,128 @@ def two_pointer2(nums: List[int], target: int) -> int:
 # Lesson Learned: Be nice to yourself Tati. You're still new to this. So two pointers is basically an address that you're moving around. 
 # use the same binary search logic at the core but were moving the pointers. 
 #------------------------------------------------------------------------------------------------------------------------------------------------#
+
+
+#------------------------------------------------------------------------------------------------------------------------------------------------#
+#                                                      14 - 11/03/2025
+#------------------------------------------------------------------------------------------------------------------------------------------------#
+# Find the index of target
+# Input: sorted list , target
+# Output: index of target
+
+def f_index(nums: List[int], target: int) -> int:
+    l, r = 0, len(nums) - 1
+
+    while l <= r:
+        mid = (l + r) // 2
+        if nums[mid] == target:
+            return mid
+        elif nums[mid] < target:
+            l = mid + 1
+        else:
+            r = mid - 1
+    return -1
+
+# BIG O : O(log n)
+# Space: O(1)
+# Time: 2 mins. 
+#------------------------------------------------------------------------------------------------------------------------------------------------#
+
+
+#------------------------------------------------------------------------------------------------------------------------------------------------#
+#                                                      15 - 11/03/2025
+#------------------------------------------------------------------------------------------------------------------------------------------------#
+# Return True/False if target exist
+# Input: sorted list, target
+# Output: Boolean
+
+def target_exist(nums: List[int], target: int) -> bool:
+    l,r = 0, len(nums)-1
+
+    while l <= r: 
+        mid = (l + r) // 2
+        if nums[mid] == target:
+            return True
+        elif nums[mid] < target:
+            l = mid + 1
+        else:
+            r = mid - 1
+    return False
+
+# BIG O : O(log n)
+# Space: O(1)
+# Time: 2 mins. 
+
+#------------------------------------------------------------------------------------------------------------------------------------------------#
+
+#------------------------------------------------------------------------------------------------------------------------------------------------#
+#                                                      16 - 11/03/2025
+#------------------------------------------------------------------------------------------------------------------------------------------------#
+# Find insert position if target not present
+# Input: sorted list, target
+# Output: Boolean
+
+def insert_pos(nums: List[int], target: int) -> bool:
+    l,r = 0, len(nums)-1
+
+    while l <= r: 
+        mid = (l + r) // 2
+        if nums[mid] == target:
+            return mid
+        elif nums[mid] < target:
+            l = mid + 1
+        else:
+            r = mid - 1
+    return l
+
+# BIG O : O(log n)
+# Space: O(1)
+# Time: 2 mins. 
+#------------------------------------------------------------------------------------------------------------------------------------------------#
+
+
+#------------------------------------------------------------------------------------------------------------------------------------------------#
+#                                                      17 - 11/03/2025
+#------------------------------------------------------------------------------------------------------------------------------------------------#
+
+# Find first occurence of target in a list with duplicates
+# Input: sorted list, target
+# Output: first occurence
+
+def f_occurrence(nums: List[int], target: int) -> int:
+    l,r = 0, len(nums)-1
+    while l < r:
+        mid = (l + r) // 2
+        if mid == target:
+            return mid
+        
+        #i forgot how to finish this off, but i know I want to check left to see if the first occurence showed up already
+
+
+# BIG O : O(log n)
+# Space: O(1)
+# Time: Stopped at 8 mins. 
+
+
+#Corrected version: 
+
+def f_occurrence2(nums: List[int], target: int) -> int:
+    l, r = 0, len(nums) - 1
+    first = -1
+    while l <= r:
+        mid = (l + r) // 2
+        if nums[mid] == target:
+            first = mid       # store current match
+            r = mid - 1       # keep searching left side
+        elif nums[mid] < target:
+            l = mid + 1
+        else:
+            r = mid - 1
+    return first
+
+#Every time you find the target, you don’t stop—you shrink the right boundary to look for an earlier duplicate.
+
+
+
+
+#------------------------------------------------------------------------------------------------------------------------------------------------#

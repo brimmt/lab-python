@@ -1,8 +1,8 @@
 """
-Title: Binary Search Study Log
+Title: Error Handling Study Log
 Author: Tatiana Brimm
 Description:
-  A chronological collection of my binary search practice problems and related algorithms.
+  A chronological collection of my error and exception practice problems.
   This file intentionally includes early, unrefined code to document growth and reasoning.
   Each section includes analysis, time/space complexity, and personal reflections.
 """
@@ -58,5 +58,30 @@ finally:
     print("I always run")
 
 
+
+
+# Example 3
+
+def ask_for_int():
+    
+    while True:
+        try:
+            result = int(input("Please provide number:"))
+        except:
+            print("Whoops! That is not a number")
+            continue
+        else:
+            print("Yes thank you")
+            break
+        finally:
+         print("End of try/execpt/finally")
+
+ask_for_int()
+
+
+
+
+
+# Errors and Exception Homework
 
 #------------------------------------------------------------------------------------------------------------------------------------------------#

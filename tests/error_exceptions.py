@@ -1,3 +1,4 @@
+
 """
 Title: Error Handling Study Log
 Author: Tatiana Brimm
@@ -81,7 +82,69 @@ ask_for_int()
 
 
 
+#------------------------------------------------------------------------------------------------------------------------------------------------#
 
+#------------------------------------------------------------------------------------------------------------------------------------------------#
+#                                                      4  - 11/4/2025
+#------------------------------------------------------------------------------------------------------------------------------------------------#
 # Errors and Exception Homework
+
+# 1.  Handle the exception thrown by the code below by using try and except blocks.
+ 
+try:
+    for i in ['a', 'b', 'c']:
+        print(i**2)
+except TypeError:
+    print("Can't multiple int and str")
+finally:
+    print("Just checking")
+
+
+# 2. Handle the exception thrown by the code below by using try and except blocks. Then use a finally blcok to print "All Done"
+try:
+    x = 5
+    y = 0
+
+    z = x/y
+except ZeroDivisionError:
+    print("Can't divide by zero")
+finally:
+    print("All done") 
+
+
+
+
+# 3. Write a function that asks for an integer and prints the square of it. Use a while loop with a try, except, else block to account for incorrect inputs.
+
+def ask():
+    
+    while True:
+        try:
+            result = input("Please enter a number: ")
+        except:
+            print("Whoops! Please enter a number")
+            continue
+        else:
+            break
+
+    print(result**2)
+
+#------------------------------------------------------------------------------------------------------------------------------------------------#
+
+# Pylint - Unit Testing
+
+def myfunc():
+    '''
+    A Simple Function
+    '''
+    first = 1
+    second = 2
+    print(first)
+    print(second)
+
+myfunc()
+
+# Your code has been rated at 4.46/10 (previous run: 2.96/10, +1.50)
+# Lol this is fun! I like this alot!  Tati remember to come back and organize this to try to get 10/10. 
 
 #------------------------------------------------------------------------------------------------------------------------------------------------#

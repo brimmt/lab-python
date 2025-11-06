@@ -125,3 +125,24 @@ def two_pointer2(nums: List[int], target: int) -> int:
 
 #10/31/2025 <- Space is actully O(1), constant time because those two variables are stored, so there not new colletions of variables being used. 
 #------------------------------------------------------------------------------------------------------------------------------------------------#
+
+#------------------------------------------------------------------------------------------------------------------------------------------------#
+#                                                      3 - 11/06/2025
+#------------------------------------------------------------------------------------------------------------------------------------------------#
+
+# Two Pointers - Move zeros to the end
+# Input: list
+# Output: List with zeros at the end
+
+#Trying the different speeds pattern
+# Fast scans and slow tracks where the next non-zero should go
+
+def move_zeros(nums: List[int]) -> List[int]:
+    slow = 0
+
+    for fast in range(len(nums)):
+        if nums[fast] != 0:
+            nums[slow], nums[fast] = nums[fast], nums[slow] #its sending back the index, i usually put the variable "val" but i see that it changes to fast to track better
+            slow += 1 # This is basically having the slow to keep moving to the next index in the list
+    return nums
+

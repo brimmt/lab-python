@@ -146,3 +146,32 @@ def move_zeros(nums: List[int]) -> List[int]:
             slow += 1 # This is basically having the slow to keep moving to the next index in the list
     return nums
 
+
+#------------------------------------------------------------------------------------------------------------------------------------------------#
+#                                                      4 - 11/10/2025
+#------------------------------------------------------------------------------------------------------------------------------------------------#
+
+# Reverse Array (Converging)  Pointers start on opposite ends and move toward each other
+# Input: Array
+# Output: Reversed Array
+
+
+def reverse_array(nums: List[int]) -> List[int]:
+    left,right = 0, len(nums) -1
+
+    while left < right:
+        nums[left], nums[right] = nums[right], nums[left]  #All were doing here is swapping the indexes
+        left += 1  #We want left to go forward 
+        right -= 1  #We want right to go backwards
+    return nums
+
+# Big O : 0(n)
+# Space : O(1)
+# good job tati you got it on the first try :) You're SO AWESOMEEE SAUCEEEE
+
+#------------------------------------------------------------------------------------------------------------------------------------------------#
+#                                                      5 - 11/10/2025
+#------------------------------------------------------------------------------------------------------------------------------------------------#
+
+# Fixed Window (Sliding Window) - Find max sum of any subarray of size 3
+

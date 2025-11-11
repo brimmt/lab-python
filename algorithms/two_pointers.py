@@ -170,8 +170,37 @@ def reverse_array(nums: List[int]) -> List[int]:
 # good job tati you got it on the first try :) You're SO AWESOMEEE SAUCEEEE
 
 #------------------------------------------------------------------------------------------------------------------------------------------------#
-#                                                      5 - 11/10/2025
+#                                                      5 - 11/11/2025
 #------------------------------------------------------------------------------------------------------------------------------------------------#
 
 # Fixed Window (Sliding Window) - Find max sum of any subarray of size 3
+# Given an array of integers nums and a number k,
+# find the maximum sum of any contiguous subarray of size k.
+
+# Input: list, k ( the fixed window size )
+# Output: subarray size of 3
+
+def max_sum_subarray(nums, k):
+    max_sum = 0   # initialize a variable to store the largest sum found while sliding the window
+    window_sum = sum(nums[:k])  # takes k first elements and sum them up
+    max_sum = window_sum  # stores the sum as max_sum
+
+    for right in range(k, len(nums)):   # move the right pointers across the array starting from index k, for each element added to the right one elemet falls off from the left
+        window_sum += nums[right] - nums[right - k]  # add new number entering on the right and subtract the number leaving the left
+        max_sum = max(max_sum, window_sum) # each time we slide we check if our new window's sum is greater than our previous max_sum
+
+    return max_sum
+
+
+def max_sum_subarray2(nums, k):
+    max_sum = 0
+    window_sum = sum(nums[:k])
+    max_sum = window_sum
+
+
+    for right in range(k, len(nums)):
+        window_sum += nums[right] - nums[right - k]
+        max_sum = max(max_sum, window_sum)
+    
+    return max_sum
 

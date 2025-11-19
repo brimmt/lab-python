@@ -204,3 +204,52 @@ def max_sum_subarray2(nums, k):
     
     return max_sum
 
+
+#------------------------------------------------------------------------------------------------------------------------------------------------#
+#                                                      6 - 11/19/2025  - Converging two-pointer
+#------------------------------------------------------------------------------------------------------------------------------------------------#
+
+""" Given a sorted array of integers nums and an integer target,
+#return True if there exist two distinct numbers such that nums[left] + nums[right] == target.
+Otherwise return False. """
+
+#Input : Sorted array, and target
+#Output: two distinct nums that equal target == true
+
+
+def two_sums(nums: List[int], target: int) -> bool:
+    l, r = 0, len(nums) -1
+
+    while l < r:
+        concurrent_sum = nums[l] + nums[r]
+        if target == concurrent_sum:
+            return True
+        elif concurrent_sum < target:
+            l += 1
+        else:
+            r -= 1
+    return False
+
+# Big O , is O(n) becaues we still have to touch each element. Best case is O(1) if target == concurrent_sum.
+# Space COmplexity <- is O(1) because we are only listing 3 variables that essentially are constant, it wont grow in size. 
+
+assert two_sums([1,2,3,4,5,6,7], 5) == True
+
+
+#------------------------------------------------------------------------------------------------------------------------------------------------#
+#                                                      7 - 11/19/2025  - Merging two-sorted lists
+#------------------------------------------------------------------------------------------------------------------------------------------------#
+
+
+"""
+Problem 3: Sorted Squares
+
+Given a sorted array of integers:
+
+nums = [-4, -1, 0, 3, 10]
+
+
+Return the squares of each number, also sorted:
+
+[0, 1, 9, 16, 100]
+"""

@@ -501,3 +501,27 @@ def count_elements(nums: List[int], target: int) -> int:
 #Space: O(n)
 #Time: 2 min >
 #------------------------------------------------------------------------------------------------------------------------------------------------#
+
+
+#------------------------------------------------------------------------------------------------------------------------------------------------#
+#                                                      21 - 11/18/2025
+#------------------------------------------------------------------------------------------------------------------------------------------------#
+#Linear Searh O(n) - Find the first Occurence
+#Input: List, target
+#Output: Return the index of the first time the target appears
+
+def find_occurence(nums: List[int], target: int) -> int:
+    for i, val in enumerate(nums):
+        if val == target:
+            return i
+    return -1
+        
+
+
+assert find_occurence([1,2,3,4,4,5], 4) == 3
+print(find_occurence([1,2,3,4,4,5], 4))
+
+#Big O: O(n) < - 
+#Space: O(1)   <- Because only 2 values are being stored
+#Time: 1 min >
+#------------------------------------------------------------------------------------------------------------------------------------------------#

@@ -169,6 +169,51 @@ def reverse_array(nums: List[int]) -> List[int]:
 # Space : O(1)
 # good job tati you got it on the first try :) You're SO AWESOMEEE SAUCEEEE
 
+
+#Reverse Array 11/22/2025
+#Input: Array
+#Output: Reversed Array
+
+
+
+"""11/22/2025 Purpose was to rewrite without looking. Hadn't done this algorithm in a week. Refreshing memory and adding reverse string to the mix. """
+
+def reverse_array1(nums: List[int]) -> int:
+    l,r = 0, len(nums)-1  #We want set the pointers. One in the begining and one in the back. We do this because were going to swap their positions with each other
+    
+    while l < r:  # This while conditon means the function will continue until l is greater than r which means theres no more numbers to iterate over
+        nums[l],nums[r] = nums[r],nums[l]  # Now all were doing is swapping the index
+        l += 1  #move left to the right
+        r -= 1 # move right to the left
+    return nums  # once done return the new element
+
+#Big 0: O(n) # It's O n because n is derminted by how lon gthe list is.
+# Space O(1)  #Theres onlt 2 elements were working with
+
+
+
+## Wrong. 
+def reverse_string(str: str) -> str:  #This ensures we get back a string
+    l,r = str[0], str[-1]  # this sents the pointers to start the begining and end of the string/  # YOU WANT THE INDEX NOT THE VALUE. 
+
+    while l < r:   # I don't know but this just felt right. I know I wanted a while loop
+        str[l], str[r] = str[r], str[l]   #pointer will swap places as it itertate.   # CANT SWAP STRINGS IN PYTHON. They are immutable
+        l += 1   #tells left pointer move right
+        r -= 1  #tells right pointer to move left
+    return str  #return the reversed string
+
+
+#Correct 
+
+def reverse_string(s: str) -> str:
+    s = list(s) # convert string to list so we can mutate
+    l,r = 0, len(s)-1
+
+    while l < r:
+        s[l],s[r] = s[r], s[r]
+        l += 1
+        r -= 1
+    return "".join(s)
 #------------------------------------------------------------------------------------------------------------------------------------------------#
 #                                                      5 - 11/11/2025
 #------------------------------------------------------------------------------------------------------------------------------------------------#
@@ -242,14 +287,120 @@ assert two_sums([1,2,3,4,5,6,7], 5) == True
 
 
 """
-Problem 3: Sorted Squares
+Given two sorted arrays:
 
-Given a sorted array of integers:
+nums1 = [1,3,5]
+nums2 = [2,4,6]
 
-nums = [-4, -1, 0, 3, 10]
 
+Return this:
 
-Return the squares of each number, also sorted:
+[1,2,3,4,5,6]
 
-[0, 1, 9, 16, 100]
 """
+
+def merge_arrays(nums1, nums2):
+    p1 = p2 = 0 # <- #This sets the pointer for both lists
+    result = [] # <- #This is where we will append the new list
+
+    while p1 < len(nums1) and p2 < len(nums2):  #This is setting the window for both arrays
+        if nums1[p1] < nums2[p2]:   # if nums1[p1] is less than p2 then we want to add that to the new list and then move p1
+            result.append(nums1[p1])
+            p1 += 1
+        else:
+            result.append(nums2[p2]) # If not we add p2 to the new list instead and move it. 
+            p2 += 1
+
+    result.extend(nums1[p1:]) # this basically adds the remaindig to the list. Kind of like how in javascript you use "..." to flatten out the array.
+    result.extend(nums2[p2:])
+
+    return result
+
+
+
+#------------------------------------------------------------------------------------------------------------------------------------------------#
+#                                                      8 - 11/22/2025  - Palindrome
+#------------------------------------------------------------------------------------------------------------------------------------------------#
+
+
+# Input: "racecar" → True
+# Input: "hello" → False
+
+# Two pointers move inward checking characters.
+
+def palindrome(str: str) -> bool:
+    r = str[-1]
+
+    for l in str:
+        if l != r:
+            return False
+    return True
+
+
+# Correct
+
+def palindrome1(str: str) -> bool: 
+    l, r = 0, len(str)-1 # I want the indexes. 
+
+    while l < r:
+        if str[l] != str[r]:
+            return False
+        l += 1
+        r -= 1
+    return True
+
+def palindrome2(str: str) -> bool:
+    l,r = 0, len(str)-1
+
+    while l < r: 
+        if str[l] != str[r]:
+            return False
+        l += 1
+        r -= 1
+    return True
+
+
+# Actual Leetcode question #125
+def isPalindrome(self, s: str) -> bool:
+        l, r = 0, len(s) - 1
+
+        while l < r:
+            # Skip non-alphanumeric on left
+            while l < r and not s[l].isalnum():
+                l += 1
+
+            # Skip non-alphanumeric on right
+            while l < r and not s[r].isalnum():
+                r -= 1
+
+            # Now compare lowercase versions
+            if s[l].lower() != s[r].lower():
+                return False
+
+            # Move pointers inward ONLY AFTER a valid comparison
+            l += 1
+            r -= 1
+
+        return True
+
+
+#------------------------------------------------------------------------------------------------------------------------------------------------#
+#                                                      8 - 11/22/2025  - Remove Duplicates From Sorted Array 
+#------------------------------------------------------------------------------------------------------------------------------------------------#
+
+def remove_duplicates(nums: List[int]) -> List[int]:
+    slow = 0 
+
+    for fast in range(1,len(nums)):
+        if nums[fast] != nums[slow]:
+            slow += 1
+            nums[slow] = nums[fast]
+
+        return slow + 1   
+
+
+
+    
+
+
+

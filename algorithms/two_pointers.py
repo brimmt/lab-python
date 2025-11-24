@@ -400,7 +400,85 @@ def remove_duplicates(nums: List[int]) -> List[int]:
 
 
 
-    
 
+
+#------------------------------------------------------------------------------------------------------------------------------------------------#
+#                                                      9 - 11/23/2025  - Sliding Window 
+#------------------------------------------------------------------------------------------------------------------------------------------------#
+
+
+
+def max_subarray_sum(nums: list[int], k: int) -> int:
+    l = 0 
+    max_sum = 0
+    best_sum = 0
+
+    for i in range(k):  #<--- is this because this is how big the array will be, or how big the window is set to be?
+        max_sum = nums[i] # Wouldn't the max sum be a list of numbers add up?
+
+    best_sum = max_sum
+
+    # Now were just sliding the window
+    l = 0 
+    for r in range(k, len(nums)):
+        max_sum += nums[r]
+        max_sum -= nums[l]
+        l += 1
+
+    if max_sum > best_sum:
+        best_sum = max_sum
+
+    return best_sum
+
+
+
+#------------------------------------------------------------------------------------------------------------------------------------------------#
+#                                                      10 - 11/23/2025  - Sliding Window - Longest substring
+#------------------------------------------------------------------------------------------------------------------------------------------------#
+
+# Wrong
+def lengthOfLongestSubstrin(s: str) -> int:
+    best = 0
+    l = 0
+    window = {}
+
+
+    for r in range(len(s)): # were going to loop through the window
+        if r not in window:  # if r is not in the dict then add it
+          window[r] = window.get(r, 0) + 1
+          best += 1  # update count
+
+        # im suppose to do thing here to shrink within the while window:
+
+        if r in window: # if r is in dict then we will shrink it
+            l += 1
+
+    return best
+
+
+# Correct version
+
+def lengthOfLongestSubstring_corrected(s: str) -> int:
+    l = 0
+    window = {}
+    best = 0
+
+    for r in range(len(s)):
+        char = s[r]  # this is also setting the variable
+        window[char] = window.get(char, 0) + 1
+
+        # shrink window until it's valid
+        while window[char] > 1:  # this is saying if there is a duplicated skip over it and shrink the left side. 
+            window[s[l]] -= 1  # This is the actual variable and not the index
+            l += 1  # this is the index
+
+        # update best
+        best = max(best, r - l + 1)  # I don't fully understand this. I think my brain is too tired. 
+
+    return best
+
+#Will clean up
+
+   
 
 

@@ -540,3 +540,126 @@ def f_occurrence2(nums: List[int], target: int) -> int:
 
 
 #------------------------------------------------------------------------------------------------------------------------------------------------#
+
+
+#------------------------------------------------------------------------------------------------------------------------------------------------#
+#                                                      19 - 11/23/2025
+#------------------------------------------------------------------------------------------------------------------------------------------------#
+
+# Find first occurence of target in a list with duplicates
+# Input: sorted list, target
+# Output: first occurence
+
+
+def find_first_occurance(nums: List[int], target: int) -> int:
+    l, r = 0, len(nums)-1
+    first = -1
+    while l <= r: 
+        mid = (l + r) // 2 # We create mid so we can start in the middle of the sorted list. O(log n)
+        if nums[mid] == target:  #If mid equals target return
+            first = mid  # store it 
+            r = mid - 1 # shrink the right side. So we can check to see if the target showed up earlier
+        elif nums[mid] < target:  # if mid is less than the target shrink the left side so we can focus on the number on the right. THe means the target hasn't shown up yet. 
+            l = mid + 1   # SAHRINK THE LEFT side. 
+        else:
+            r = mid - 1  # if the mid is larger than the target then we will shrink the right side. 
+    return first
+
+
+
+#------------------------------------------------------------------------------------------------------------------------------------------------#
+#                                                      20 - 11/23/2025
+#------------------------------------------------------------------------------------------------------------------------------------------------#
+
+# Write a function that takes a string s and returns the reverse of the string without using built-in reverse functions.
+
+#Python shortcut
+def reverse_a_string(s: str) -> str:
+    return s[::-1]
+
+
+def reverse_string_pointer(s: str) -> str: 
+    l, r = 0, len(s)-1  # we set the pointers. Why? Because were going to have them swap with each other each time.
+    s_list = list(s) # were going to turn it into a list because strings are not mutable. 
+
+    while l < r: 
+        s_list[l], s_list[r] = s_list[r], s_list[l] # we want to swap the pointers each time. 
+        l += 1  # left will continue to move foward
+        r -=1  # right will continue to move backward
+    
+    return "".join(s_list)  # this turns the list into a string
+
+
+# Big O : O(log n)
+# Space : O(n)
+
+
+#------------------------------------------------------------------------------------------------------------------------------------------------#
+
+#------------------------------------------------------------------------------------------------------------------------------------------------#
+#                                                      21 - 11/23/2025
+#------------------------------------------------------------------------------------------------------------------------------------------------#
+
+# Write a function that takes a string s and returns True if it is a palindrome, ignoring:
+# capitalization, spaces, punctuation
+# any non-alphanumeric characters
+# Otherwise return False.
+
+def check_if_palindrome(s: str) -> bool:
+    l,r = 0, len(s)-1
+
+    while l <= r:
+
+        while l <= r and not s[l].isalnum():
+            l += 1
+        while l <= r and not s[r].isalnum():
+            r -= 1
+
+        if s[l].lower() != s[r].lower():
+            return False
+        
+        l += 1
+        r -= 1
+    
+    return True
+
+
+
+#------------------------------------------------------------------------------------------------------------------------------------------------#
+#                                                      22 - 11/23/2025
+#------------------------------------------------------------------------------------------------------------------------------------------------#
+
+# Given a string s, return the index of the first character that does not repeat.
+# If no such character exists, return -1.
+
+# Input: s
+# Output unquie character or -1
+
+def find_unqiue_character(s: str):
+    
+    count = {}
+
+    for char in s:
+        count[char] = count.get(char,0) + 1
+    for i, char in enumerate(s):
+        if count[char] <= 1:
+            return i
+    return -1
+
+
+def find_unique_char(s: str):
+    count = {} #This is the dict, that we will store our chars in as we count. 
+
+    for char in s:
+        count[char] = count.get(char, 0) + 1 # This checks if char is already there and adds 1. If its not there yet , then it will be added with the number 1 as well. 
+    for i, char in enumerate(s):  #now ere going to check which char has a count under 1. 
+        if count[char] <= 1:
+            return i # this returns the index
+        
+    return -1
+
+
+        
+            
+
+   

@@ -95,3 +95,45 @@ def display(head):
         elements.append(str(curr.val))
         curr = curr.next
     print("<->".join(elements))
+
+
+#------------------------------------------------------------------------------------------------------------------------------------------------#
+#                                                      3 - 11/23/2025
+#------------------------------------------------------------------------------------------------------------------------------------------------#
+
+# Given the head of a linked list, determine if the list contains a cycle.
+# Return:
+# True if there’s a cycle
+# False otherwise
+
+
+# WRONG
+def hasCycle(head):
+    slow = head
+    fast = head
+
+    while fast and fast.next:
+        if slow != fast:   # Breaks the logic
+            fast = fast.next.next
+            slow = slow.next
+            return False
+        else:
+            slow == fast
+        return True
+    
+
+#Correct 
+
+
+def hasCycle_correct(head):
+    slow = head
+    fast = head
+
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+
+        if slow == fast:
+            return True
+        
+    return False

@@ -123,7 +123,7 @@ print(char_frequency("Teesting"))
 # BIG O = O(n) <- depends on how many elemets to loop through
 # Space O(n) <- Because of the dictionary, of size n
         
-
+#------------------------------------------------------------------------------------------------------------------------------------------------#
 
 # WRONG !
 # 5. Anagram check
@@ -183,14 +183,14 @@ def check_if_anagrams1(s1: str, s2: str) -> bool:
 #Input: Array
 # Output : Array - all zeros in the back
 
-def move_zeros(nums: List[int]) -> List:  # This is making sure that we get a list back
+def move_zeros(nums: List[int]) -> None:  # This is making sure that we get a list back
     slow = 0  # set the pointer for our reckon mission
 
     for fast in range(len(nums)):  # fast is going to scount through each elementin the array to find its target
         if nums[fast] != 0: # if the variable that target is on isn't 0 then fast is going to move on. 
             nums[fast], nums[slow] = nums[slow], nums[fast]  # Fast continue to iterate through and slow continues to take fast position
             slow += 1  # Slow moves up 1 to keep up with fsat on this reckon mission
-    return nums # Return the list with all the enemnies '0' in the back!
+    
 
 
 #------------------------------------------------------------------------------------------------------------------------------------------------#
@@ -198,6 +198,319 @@ def move_zeros(nums: List[int]) -> List:  # This is making sure that we get a li
 # Q 7. Given an array nums, return True if any value appears at least twice,
 # otherwise return False
 
+# Input: Array
+# Output: Boolean
+
+
+def contain_duplicates(nums: List[int]) -> bool:
+    count = set()  # this will be where we hold out variables
+
+    for val in nums: # loop throuhg the entire array
+        count.add(nums[val])
+        if val in set:
+            return True
+    return False
+
+# Corrected Version: 
+
+def contain_duplicates(nums: List[int]) -> bool:
+    count = set()  # this will be where we hold out variables
+
+    for val in nums: # loop throuhg the entire array
+        if val in count:
+            return True
+        count.add(val)
+    return False
+#------------------------------------------------------------------------------------------------------------------------------------------------#
+# 8. Two Sum (Sorted Two Pointer)
+# Given a sorted array nums and an integer target,
+# return the indices of two elements that sum to target.
+# Return [-1, -1] if none exist.
+#
+
+def two_sum_pointers(nums: List[int], target: int) -> List[int]:
+    l, r = 0, len(nums)-1
+    
+    while l < r:
+        concurrent_sum = nums[l] + nums[r]
+        if concurrent_sum == target:
+            return concurrent_sum
+        elif concurrent_sum < target:
+            l += 1
+        else:
+            r -= 1
+    return [-1, -1]
+
+
+# Correct Version: 
+
+def two_sum_pointers(nums: List[int], target: int) -> List[int]:
+    l, r = 0, len(nums) - 1
+
+    while l < r:
+        current = nums[l] + nums[r]
+        if current == target:
+            return [l, r]   # Remeber we want to return the list. The two indices
+        elif current < target:
+            l += 1
+        else:
+            r -= 1
+
+    return [-1, -1]
+#------------------------------------------------------------------------------------------------------------------------------------------------#
+
+# 9. Given an array nums and integer k,
+# return the maximum sum of any subarray of size k.
+
+
+# Input : Array and K 
+# Output : Max sum of subarray of k 
+
+
+def max_subarray(nums: List[int], k: int) -> int:
+    if k > len(nums):
+        return 0
+    
+    
+    for i in range(k):
+        pass
+
+
+#Corrected
+
+
+def max_subbarray1(nums: List[int], k: int) -> int:
+    if k > len(nums):
+        return 0
+    
+    #Create the window! 
+    current_sum = 0
+    for i in range(k):
+        current_sum += nums[i]
+    best_sum = current_sum # set these variables
+    l = 0  # set these variables
+
+    for r in range(k, len(nums)):
+        current_sum += nums[r]
+        current_sum -= nums[l]
+        l += 1
+
+        best_sum = max(best_sum, current_sum)
+
+    return best_sum
+
+
+
+def max_subarray(nums: List[int], k: int) -> int:
+    if k > len(nums):
+        return 0
+    
+    current_nums = 0
+    for i in range(k):
+        current_nums += nums[i]
+    
+    best_sum = current_nums
+    l = 0
+
+    for r in range(k, len(nums)):
+        current_nums += nums[r]
+        current_nums -= nums[l]
+        l += 1
+
+        best_sum = max(best_sum, current_nums)
+    
+    return best_sum
+
+
+
+
+#10 Longest Substring without repeating characters
+
+
+#Input : string 
+#Ouput : Int
+def longest_substring(s: str) -> int: 
+    l = 0   # Set the left pointer
+    window = {}  # set the hash dict that we will store values
+    best = 0  # This will add up as we find the sub arrays
+
+    for r in range(s):
+        char = s[r]
+        window[char] = window.get(char,0) + 1
+
+    while window[char] > 1: # if the value of k is greater than 1 that means there was a duplicate
+        window[s[l]] -= 1 # were kicking out the left side and continueing to move foward
+        l += 1  # were continuing to move u=foward
+
+    best = max() # i don't understand this part so i left it as is. I saw what the answer is but I didn't add it because I dont understand it
+
+    return best
+
+
+
+# Corrected - (Wrong attempt)
+
+
+def longest_substring_corrected(s: str) -> int:
+    l = 0
+    window = {}
+    best = 0
+
+    for r in range(len(s)):
+        char = s[r]
+        window[char] = window.get(char, 0) + 1
+
+        while window[char] > 1:
+            window[s[l]] -= 1
+            l += 1
+
+        best = max(best, r -l + 1)
+    return best
+
+
+# Corrected version 1
+
+
+def longest_subarry(s: str) -> int:
+    l = 0
+    window = {}
+    best = 0
+
+    for r in range(len(s)):
+        char = s[r]
+        window[char] = window.get(char, 0) + 1
+
+        while window[char] > 1:
+            window[s[l]] -= 1
+            l += 1
+
+        best = max(best, r - l + 1)
+    
+    return best
+
+# 11/18/2025 Study Block. 3 hours.
+
+
+#Two Sums (HashMap)
+
+def twoSum(nums: List[int], target: int) -> int:
+    seen = {}
+
+    for i, val in enumerate(nums):
+        complement = target - val
+        if complement in seen:
+            return [seen[complement], i]
+        seen[val] = i
+    return [-1,-1]
+
+
+
+
+# Contains Duplicates (Hashset)
+
+def containsDuplicates(nums: List[int]) -> bool:
+    count = set()
+
+    for val in nums:
+        if val in count:
+            return True
+        count.add(val)
+    return False
+
+# Remeber to check the set before adding any values to it. 
+
+
+
+#Valid Parenthesis
+# Stacks last in last out
+
+def validParenthesis(s: str) -> bool:
+    stack = []
+    pairs = {
+        ")":"(",
+        "}":"{",
+        "]":"["
+    }
+
+    # Now we want to add the keys to the stack
+    for ch in s: 
+        if ch in pairs.values():
+            stack.append(ch)
+        #Now lets check if its closing and we want to pair it to the stack
+        elif ch in pairs.keys():
+            if not stack:
+                return False   # because closing cant come before begiining
+        
+            top = stack.pop() # this means the item at the end of the list gets popped. So the item at the top?
+
+
+            if top != pairs[ch]:
+                return False
+        else:
+            continue
+        
+    return len(stack) == 0
+
+
+# Longest Common Prefix
+
+def longestCommonPrefix(strs: List[str]) -> str:  # Were definnig a function called longestCommonPrefix. takes a list of strings, and returns the prefix (str)
+    if not strs:   # if the list is empty then return empty string
+        return ""
+
+    strs.sort()   # Sort it so then the most common prefixes end up on the on the ssame side. So like it will sort the words from a to z. 
+    first = strs[0]  # the smallest string alphabettically   EXAMPLE: flight
+    last = strs[-1]  # the last largest string alphabetically   EXAMPLE : flower
+
+    i = 0  # i will move across both strings
+    while i < len(first) and i < len(last) and first[i] == last[i]:
+        i += 1
+
+    return first[:i] # Returns the slices out of the prefix
+
+
+
+
+# 3SUM - Step by Step Explanation
+
+
+#Easier if already solved 2 sum II
+
+
+def threeSum(nums: List[int]) -> List[int]:
+    res = []  # <- This is the results of the amount that will equal whatber  the conditon is
+    nums.sort()  # <- Sort the array, it makes it easier to catch duplicates
+
+
+    # Use each value as a possible first value
+
+    for i, a in enumerate(nums):
+        if i > 0 and a == nums[i - 1]:   # <- makes sure we don't resuse the same value in the same position, means this isn;t the firs tvalue in the input array, and a value checks that it's not the same value as the previous array. 
+            continue
+
+    # Now that we checked that edge case, lets start normal two sums
+        l,r = i + 1, len(nums)-1
+
+        while l < r: 
+            three = a + nums[l] + nums[r]
+            if three > 0:
+                r -= 1
+            elif three < 0:
+                l += 1
+            else:
+                res.append([a + nums[r], nums[l]])  # We found the result that == 0
+                l += 1  # keep searching for new combinations
+                r -= 1
+
+                # skip duplicates on the left side
+                while nums[l] == nums[l-1] and l < r:  
+                    l += 1
+                    
+    return res
+
+        
+
+    
 
 
 

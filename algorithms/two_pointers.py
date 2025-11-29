@@ -437,7 +437,7 @@ def max_subarray_sum(nums: list[int], k: int) -> int:
 #------------------------------------------------------------------------------------------------------------------------------------------------#
 
 # Wrong
-def lengthOfLongestSubstrin(s: str) -> int:
+def lengthOfLongestSubstring(s: str) -> int:
     best = 0
     l = 0
     window = {}
